@@ -1,4 +1,4 @@
-# myApp
+# movietracker
 
 A new Flutter project.
 
