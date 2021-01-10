@@ -71,7 +71,9 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                   movie.title.length > 40
                       ? movie.title.substring(0, 37) + "..."
                       : movie.title,
-                  style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 12.0, 
+                    fontWeight: FontWeight.bold),
                 ),
                 background: Stack(
                   children: <Widget>[
@@ -114,7 +116,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                             Text(
                               movie.rating.toString(),
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Style.Colors.white,
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold),
                             ),

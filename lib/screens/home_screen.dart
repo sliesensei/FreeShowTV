@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movietracker/screens/main_drawer.dart';
+import 'package:movietracker/screens/search_screen.dart';
 import 'package:movietracker/style/theme.dart' as Style;
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:movietracker/widgets/genres.dart';
@@ -31,7 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
               EvaIcons.searchOutline,
               color: Colors.white,
             ),
-            onPressed: null,
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SearchScreen()));
+            },
           )
         ],
       ),
