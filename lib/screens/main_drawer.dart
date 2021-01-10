@@ -81,9 +81,12 @@ class _MainDrawerState extends State<MainDrawer> {
                 ),
                 alignment: Alignment.centerLeft,
               ),
-              onTap: () {
+              onTap: _isConnect ? () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => ProfileScreen()));
+              } : () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
               },
             ),
             ListTile(
