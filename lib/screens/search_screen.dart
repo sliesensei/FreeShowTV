@@ -1,20 +1,10 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flappy_search_bar/flappy_search_bar.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:movietracker/bloc/get_movie_search_bloc.dart';
 import 'package:movietracker/model/movie.dart';
-import 'package:movietracker/model/search.dart';
-import 'package:movietracker/model/video_response.dart';
-import 'package:movietracker/screens/video_player.dart';
 import 'package:movietracker/repository/repository.dart';
 import 'package:movietracker/style/theme.dart' as Style;
 import 'package:movietracker/screens/detail_screen.dart';
-import 'package:movietracker/widgets/casts.dart';
-import 'package:movietracker/widgets/movie_info.dart';
-import 'package:movietracker/widgets/similar_movies.dart';
-import 'package:sliver_fab/sliver_fab.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class SearchScreen extends StatefulWidget {
   //SearchScreen({Key key}) : super(key: key);
@@ -30,13 +20,11 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
-    //movieVideosBloc..getMovieVideos(movie.id);
   }
 
   @override
   void dispose() {
     super.dispose();
-    //movieVideosBloc..drainStream();
   }
 
   @override
@@ -64,7 +52,6 @@ class _SearchScreenState extends State<SearchScreen> {
             },
             onSearch: _repository.searchMovie,
             onItemFound: (Movie movie, int index) {
-              print(movie.title);
               return ListTile(
                 title: Text(
                     movie.title.length > 40

@@ -3,12 +3,9 @@ import 'package:movietracker/model/genre_response.dart';
 import 'package:movietracker/model/movie_detail_response.dart';
 import 'package:movietracker/model/movie_response.dart';
 import 'package:movietracker/model/movie.dart';
-import 'package:movietracker/model/search.dart';
 import 'package:dio/dio.dart';
-import 'dart:convert';
 import 'package:movietracker/model/person_response.dart';
 import 'package:movietracker/model/video_response.dart';
-import 'package:movietracker/model/search_response.dart';
 
 class MovieRepository {
   final String apiKey = "7d039bce864f6ec288abc6f2e0124f22";
@@ -159,12 +156,12 @@ class MovieRepository {
             .map((i) => Movie.fromJson(i))
             .toList();
         return res;
-      }
-      else 
+      } else
         return [];
     } catch (error, stacktrace) {
       print("Exception occured: $error stackTrace: $stacktrace");
       return [];
     }
   }
+
 }

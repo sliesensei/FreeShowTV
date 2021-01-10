@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  shared_preferences: ^0.5.12+4
   cupertino_icons: ^1.0.1
   flappy_search_bar: ^1.7.2
   dio: ^3.0.10
@@ -56,7 +57,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - "assets/icons/freeshowtv.png"
+    - assets/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

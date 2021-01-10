@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movietracker/style/theme.dart' as Style;
+import 'package:movietracker/screens/login_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -12,7 +13,17 @@ class MainDrawer extends StatelessWidget {
           child: Text("Hello"),
           decoration: BoxDecoration(color: Style.Colors.mainColor),
         ),
-        ListTile(title: Text("1")),
+        ListTile(
+          title: Text("Account detail"),
+          onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              LoginScreen()));
+                  // do something
+                },
+              ),
         ListTile(title: Text("2")),
         ListTile(title: Text("3")),
         ListTile(title: Text("4")),
