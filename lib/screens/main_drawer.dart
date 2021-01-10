@@ -3,8 +3,37 @@ import 'package:movietracker/screens/profile_screen.dart';
 import 'package:movietracker/screens/search_screen.dart';
 import 'package:movietracker/style/theme.dart' as Style;
 import 'package:movietracker/screens/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class MainDrawer extends StatelessWidget {
+class MainDrawer extends StatefulWidget {
+  @override
+  _MainDrawerState createState() => _MainDrawerState();
+}
+
+class _MainDrawerState extends State<MainDrawer> {
+  bool _isConnect;
+
+  Future<Null> getloginStatus() async {
+    final db = await SharedPreferences.getInstance();
+    final sessionId = db.getString('sessionId') ?? null;
+    if (sessionId != null) {
+      setState(() {
+        _isConnect = true;
+      });
+    } else {
+      setState(() {
+        _isConnect = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _isConnect = false;
+    getloginStatus();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -60,7 +89,7 @@ class MainDrawer extends StatelessWidget {
             ListTile(
               title: Container(
                 child: Text(
-                  "Search",
+                  _isConnect ? "Log out" : "Log In",
                   style: TextStyle(color: Style.Colors.white),
                 ),
                 alignment: Alignment.centerLeft,
