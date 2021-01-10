@@ -36,6 +36,10 @@ dependencies:
   flutter_launcher_icons: ^0.8.1
   sliver_fab: "^1.0.0"
   youtube_player_flutter: ^6.1.0+7
+  path_provider: ^1.6.24
+  path: ^1.7.0
+  image_picker: ^0.6.7+14
+  shared_preferences: ^0.5.12+4
 
 dev_dependencies:
   flutter_test:
