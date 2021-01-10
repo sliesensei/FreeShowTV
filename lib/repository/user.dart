@@ -1,4 +1,3 @@
-
 import 'package:movietracker/model/login_response.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -60,15 +59,17 @@ class UserRepository {
   Future<AccountResponse> getProfilInfo() async {
     final db = await SharedPreferences.getInstance();
     final sessionId = db.getString('sessionId') ?? null;
+    //print(sessionId);
 
     var params = {"api_key": apiKey, "session_id": sessionId};
     try {
       Response response = await _dio.get(accountUrl, queryParameters: params);
-      print(response);
-      //return AccountResponse.fromJson(response.data);
+      final data = AccountResponse.fromJson(response.data);
+      //print(response);
+      return data;
     } catch (error, stacktrace) {
       print("Exception occured: $error stackTrace: $stacktrace");
-      //return AccountResponse.withError("$error");
+      return AccountResponse.withError("$error");
     }
   }
 

@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movietracker/model/account_response.dart';
 import 'dart:io';
 import 'package:movietracker/style/theme.dart' as Style;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart' as syspaths;
 import 'package:path/path.dart' as path;
 import 'package:image_picker/image_picker.dart';
+import 'package:movietracker/repository/user.dart';
 
 class ProfileScreen extends StatefulWidget {
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -13,11 +15,22 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   File _storedImage;
+  AccountResponse _info;
+
+  final UserRepository _repository = UserRepository();
+
+  Future<Null> getData() async {
+    final data = await _repository.getProfilInfo();
+    setState(() {
+      _info = data;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_){
+    getData();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _asyncInitState();
     });
   }
@@ -39,6 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(_info);
     return Scaffold(
       backgroundColor: Style.Colors.mainColor,
       appBar: AppBar(
@@ -53,7 +67,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: Image(
               image: _storedImage == null
                   ? NetworkImage(
-                  'https://pwcenter.org/sites/default/files/styles/profile_image/public/default_images/default_profile.png?itok=wW1obErD')
+                      'https://pwcenter.org/sites/default/files/styles/profile_image/public/default_images/default_profile.png?itok=wW1obErD')
                   : FileImage(_storedImage),
               fit: BoxFit.cover,
               width: 100,
