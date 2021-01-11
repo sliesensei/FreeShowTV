@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:movietracker/bloc/get_now_playing_bloc.dart';
-import 'package:movietracker/model/movie.dart';
-import 'package:movietracker/model/movie_response.dart';
+import 'package:freeshowtv/bloc/get_now_playing_bloc.dart';
+import 'package:freeshowtv/model/movie.dart';
+import 'package:freeshowtv/model/movie_response.dart';
 import 'package:page_indicator/page_indicator.dart';
-import 'package:movietracker/style/theme.dart' as Style;
+import 'package:freeshowtv/style/theme.dart' as Style;
+import 'package:freeshowtv/constant/constants.dart';
 
 class NowPlaying extends StatefulWidget {
   @override
@@ -46,7 +47,7 @@ class _NowPlayingState extends State<NowPlaying> {
             height: 25.0,
             width: 25,
             child: CircularProgressIndicator(
-              valueColor: new AlwaysStoppedAnimation(Colors.white),
+              valueColor: new AlwaysStoppedAnimation(Style.Colors.white),
               strokeWidth: 4.0,
             ),
           )
@@ -96,7 +97,7 @@ class _NowPlayingState extends State<NowPlaying> {
                         shape: BoxShape.rectangle,
                         image: DecorationImage(
                             image: NetworkImage(
-                                "https://image.tmdb.org/t/p/original/" +
+                                Constants.imageUrlOriginal +
                                     movies[index].backPoster),
                             fit: BoxFit.cover)),
                   ),
@@ -136,9 +137,9 @@ class _NowPlayingState extends State<NowPlaying> {
                                 movies[index].title,
                                 style: TextStyle(
                                   height: 1.5,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16.0,
+                                  color: Style.Colors.white,
+                                  fontWeight: Style.FontWeights.bold,
+                                  fontSize: Style.FontSizes.size16,
                                 ),
                               )
                             ],

@@ -1,7 +1,7 @@
-import 'package:movietracker/model/login_response.dart';
+import 'package:freeshowtv/model/login_response.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:movietracker/model/account_response.dart';
+import 'package:freeshowtv/model/account_response.dart';
 
 class UserRepository {
   final String apiKey = "7e63f4a608a66fe5cda8dc659ac2bfb3";
@@ -19,35 +19,22 @@ class UserRepository {
     _dio.interceptors.clear();
     _dio.interceptors
         .add(InterceptorsWrapper(onRequest: (RequestOptions options) {
-      // Do something before request is sent
-
       options.queryParameters = {
         "api_key": apiKey,
         "language": "en-US",
         "session_id": sessionId
       };
-
-      print("ca passe icic");
-
-      //options.headers["Authorization"] = "Bearer " + token;
       return options;
     }, onResponse: (Response response) {
-      // Do something with response data
-      return response; // continue
+      return response;
     }, onError: (DioError error) async {
-      // Do something with response error
       if (error.response?.statusCode == 401) {
         _dio.interceptors.requestLock.lock();
         _dio.interceptors.responseLock.lock();
         RequestOptions options = error.response.request;
-        /*FirebaseUser user = await FirebaseAuth.instance.currentUser();
-        token = await user.getIdToken(refresh: true);
-        await writeAuthKey(token);
-        options.headers["Authorization"] = "Bearer " + token;
-
         _dio.interceptors.requestLock.unlock();
         _dio.interceptors.responseLock.unlock();
-        return _dio.request(options.path, options: options);*/
+        return _dio.request(options.path, options: options);
       } else {
         return error;
       }
@@ -59,13 +46,11 @@ class UserRepository {
   Future<AccountResponse> getProfilInfo() async {
     final db = await SharedPreferences.getInstance();
     final sessionId = db.getString('sessionId') ?? null;
-    //print(sessionId);
 
     var params = {"api_key": apiKey, "session_id": sessionId};
     try {
       Response response = await _dio.get(accountUrl, queryParameters: params);
       final data = AccountResponse.fromJson(response.data);
-      //print(response);
       return data;
     } catch (error, stacktrace) {
       print("Exception occured: $error stackTrace: $stacktrace");

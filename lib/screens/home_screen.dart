@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:movietracker/screens/main_drawer.dart';
-import 'package:movietracker/screens/search_screen.dart';
-import 'package:movietracker/style/theme.dart' as Style;
+import 'package:freeshowtv/screens/main_drawer.dart';
+import 'package:freeshowtv/screens/search_screen.dart';
+import 'package:freeshowtv/style/theme.dart' as Style;
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:movietracker/widgets/genres.dart';
-import 'package:movietracker/widgets/now_playing.dart';
-import 'package:movietracker/widgets/persons.dart';
-import 'package:movietracker/widgets/top_movies.dart';
+import 'package:freeshowtv/widgets/genres.dart';
+import 'package:freeshowtv/widgets/now_playing.dart';
+import 'package:freeshowtv/widgets/persons.dart';
+import 'package:freeshowtv/widgets/top_movies.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

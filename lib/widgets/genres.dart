@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movietracker/bloc/get_genres_bloc.dart';
-import 'package:movietracker/model/genre.dart';
-import 'package:movietracker/model/genre_response.dart';
-import 'package:movietracker/widgets/genres_list.dart';
+import 'package:freeshowtv/bloc/get_genres_bloc.dart';
+import 'package:freeshowtv/model/genre.dart';
+import 'package:freeshowtv/model/genre_response.dart';
+import 'package:freeshowtv/widgets/genres_list.dart';
+import 'package:freeshowtv/style/theme.dart' as Style;
 
 class GenresScreen extends StatefulWidget {
   @override
@@ -51,7 +52,7 @@ class _GenresScreenState extends State<GenresScreen> {
             height: 25.0,
             width: 25,
             child: CircularProgressIndicator(
-              valueColor: new AlwaysStoppedAnimation(Colors.white),
+              valueColor: new AlwaysStoppedAnimation(Style.Colors.white),
               strokeWidth: 4.0,
             ),
           )

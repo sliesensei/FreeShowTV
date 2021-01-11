@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:movietracker/bloc/get_casts_bloc.dart';
-import 'package:movietracker/model/cast.dart';
-import 'package:movietracker/model/cast_response.dart';
-import 'package:movietracker/style/theme.dart' as Style;
+import 'package:freeshowtv/bloc/get_casts_bloc.dart';
+import 'package:freeshowtv/model/cast.dart';
+import 'package:freeshowtv/model/cast_response.dart';
+import 'package:freeshowtv/style/theme.dart' as Style;
+import 'package:freeshowtv/constant/constants.dart';
 
 class Casts extends StatefulWidget {
   final int id;
@@ -39,8 +40,8 @@ class _CastsState extends State<Casts> {
             "CASTS",
             style: TextStyle(
                 color: Style.Colors.titleColor,
-                fontWeight: FontWeight.w500,
-                fontSize: 12.0),
+                fontWeight: Style.FontWeights.w500,
+                fontSize: Style.FontSizes.size12),
           ),
         ),
         SizedBox(height: 5.0),
@@ -72,7 +73,7 @@ class _CastsState extends State<Casts> {
             height: 25.0,
             width: 25,
             child: CircularProgressIndicator(
-              valueColor: new AlwaysStoppedAnimation(Colors.white),
+              valueColor: new AlwaysStoppedAnimation(Style.Colors.white),
               strokeWidth: 4.0,
             ),
           )
@@ -101,7 +102,7 @@ class _CastsState extends State<Casts> {
               children: <Widget>[
                 Text(
                   "No More Persons",
-                  style: TextStyle(color: Colors.black45),
+                  style: TextStyle(color: Style.Colors.black45),
                 )
               ],
             )
@@ -135,7 +136,7 @@ class _CastsState extends State<Casts> {
                                   color: Style.Colors.secondColor),
                               child: Icon(
                                 FontAwesomeIcons.userAlt,
-                                color: Colors.white,
+                                color: Style.Colors.white,
                               ),
                             ),
                           )
@@ -149,7 +150,7 @@ class _CastsState extends State<Casts> {
                                   image: new DecorationImage(
                                       fit: BoxFit.cover,
                                       image: NetworkImage(
-                                          "https://image.tmdb.org/t/p/w300/" +
+                                          Constants.imageUrlW300 +
                                               casts[index].img)),
                                 )),
                           ),
@@ -161,9 +162,9 @@ class _CastsState extends State<Casts> {
                       maxLines: 2,
                       style: TextStyle(
                           height: 1.4,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 9.0),
+                          color: Style.Colors.white,
+                          fontWeight: Style.FontWeights.bold,
+                          fontSize: Style.FontSizes.size9),
                     ),
                     SizedBox(
                       height: 3.0,
@@ -175,8 +176,8 @@ class _CastsState extends State<Casts> {
                       style: TextStyle(
                           height: 1.4,
                           color: Style.Colors.titleColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 7.0),
+                          fontWeight: Style.FontWeights.bold,
+                          fontSize: Style.FontSizes.size7),
                     ),
                   ],
                 ),

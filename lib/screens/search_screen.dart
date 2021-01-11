@@ -1,19 +1,19 @@
-
 import 'package:flutter/material.dart';
 import 'package:flappy_search_bar/flappy_search_bar.dart';
-import 'package:movietracker/model/movie.dart';
-import 'package:movietracker/repository/repository.dart';
-import 'package:movietracker/style/theme.dart' as Style;
-import 'package:movietracker/screens/detail_screen.dart';
+import 'package:flappy_search_bar/search_bar_style.dart';
+import 'package:freeshowtv/model/movie.dart';
+import 'package:freeshowtv/repository/repository.dart';
+import 'package:freeshowtv/style/theme.dart' as Style;
+import 'package:freeshowtv/screens/detail_screen.dart';
+import 'package:freeshowtv/constant/constants.dart';
 
 class SearchScreen extends StatefulWidget {
-  //SearchScreen({Key key}) : super(key: key);
+
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  //final Movie movie;
   final MovieRepository _repository = MovieRepository();
   _SearchScreenState();
 
@@ -44,12 +44,20 @@ class _SearchScreenState extends State<SearchScreen> {
             cancellationWidget: Text("Cancel",
                 style: TextStyle(
                     color: Style.Colors.white,
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.bold)),
-            emptyWidget: Text("empty"),
+                    fontSize: Style.FontSizes.size14,
+                    fontWeight: Style.FontWeights.bold)),
+            emptyWidget: Text("No result",
+                style: TextStyle(
+                    color: Style.Colors.white,
+                    fontSize: Style.FontSizes.size14,
+                    fontWeight: Style.FontWeights.bold)),
             onCancelled: () {
               print("Cancelled triggered");
             },
+            searchBarStyle: SearchBarStyle(
+              backgroundColor: Style.Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
             onSearch: _repository.searchMovie,
             onItemFound: (Movie movie, int index) {
               return ListTile(
@@ -59,19 +67,18 @@ class _SearchScreenState extends State<SearchScreen> {
                         : movie.title,
                     style: TextStyle(
                         color: Style.Colors.white,
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.bold)),
+                        fontSize: Style.FontSizes.size14,
+                        fontWeight: Style.FontWeights.bold)),
                 subtitle: Text(
                     movie.overview.length > 120
                         ? movie.overview.substring(0, 117) + "..."
                         : movie.overview,
                     style: TextStyle(
                       color: Style.Colors.white,
-                      fontSize: 12.0,
+                      fontSize: Style.FontSizes.size12,
                     )),
                 leading: movie.poster != null
-                    ? Image.network(
-                        "https://image.tmdb.org/t/p/w200/" + movie.poster)
+                    ? Image.network(Constants.imageUrl + movie.poster)
                     : null,
                 onTap: () {
                   Navigator.push(
@@ -79,7 +86,6 @@ class _SearchScreenState extends State<SearchScreen> {
                       MaterialPageRoute(
                           builder: (context) =>
                               MovieDetailScreen(movie: movie)));
-                  // do something
                 },
               );
             },

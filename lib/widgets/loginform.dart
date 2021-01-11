@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:movietracker/repository/user.dart';
-import 'package:movietracker/style/theme.dart' as Style;
-import 'package:movietracker/screens/home_screen.dart';
+import 'package:freeshowtv/repository/user.dart';
+import 'package:freeshowtv/style/theme.dart' as Style;
+import 'package:freeshowtv/screens/home_screen.dart';
 
 class Loginform extends StatefulWidget {
   const Loginform() : super();
@@ -36,6 +36,7 @@ class _LoginformState extends State<Loginform> {
       backgroundColor: Style.Colors.mainColor,
       appBar: AppBar(
         backgroundColor: Style.Colors.mainColor,
+        title: Text("Login"),
       ),
       body: Container(
         margin: const EdgeInsets.all(10.0),
@@ -49,28 +50,13 @@ class _LoginformState extends State<Loginform> {
                 height: height * 0.25,
                 child: Image.asset('assets/fre.png'),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Login',
-                      style: TextStyle(
-                          color: Style.Colors.white,
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
               SizedBox(
                 height: 30.0,
               ),
               TextField(
                 controller: emailField,
                 decoration: InputDecoration(
-                  hintText: 'Email',
+                  hintText: 'Username',
                   filled: true,
                   fillColor: Style.Colors.white,
                   suffixIcon: Icon(Icons.email),
@@ -106,11 +92,11 @@ class _LoginformState extends State<Loginform> {
                     Text(
                       'Forget password?',
                       style:
-                          TextStyle(color: Style.Colors.white, fontSize: 12.0),
+                          TextStyle(color: Style.Colors.white, fontSize: Style.FontSizes.size12),
                     ),
                     RaisedButton(
                       child: Text('Login'),
-                      color: Color(0xffEE7B23),
+                      color: Style.Colors.green,
                       onPressed: () async {
                         final res = await _repository.login(
                             emailField.text, passField.text);
@@ -183,7 +169,7 @@ class _LoginformState extends State<Loginform> {
                       children: [
                         TextSpan(
                           text: 'Signup',
-                          style: TextStyle(color: Color(0xffEE7B23)),
+                          style: TextStyle(color: Style.Colors.green),
                         ),
                       ]),
                 ),

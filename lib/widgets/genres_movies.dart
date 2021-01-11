@@ -2,11 +2,12 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:movietracker/bloc/get_movies_byGenre_bloc.dart';
-import 'package:movietracker/model/movie.dart';
-import 'package:movietracker/model/movie_response.dart';
-import 'package:movietracker/screens/detail_screen.dart';
-import 'package:movietracker/style/theme.dart' as Style;
+import 'package:freeshowtv/bloc/get_movies_byGenre_bloc.dart';
+import 'package:freeshowtv/model/movie.dart';
+import 'package:freeshowtv/model/movie_response.dart';
+import 'package:freeshowtv/screens/detail_screen.dart';
+import 'package:freeshowtv/style/theme.dart' as Style;
+import 'package:freeshowtv/constant/constants.dart';
 
 class GenreMovies extends StatefulWidget {
   final int genreId;
@@ -61,7 +62,7 @@ class _GenreMoviesState extends State<GenreMovies> {
             height: 25.0,
             width: 25,
             child: CircularProgressIndicator(
-              valueColor: new AlwaysStoppedAnimation(Colors.white),
+              valueColor: new AlwaysStoppedAnimation(Style.Colors.white),
               strokeWidth: 4.0,
             ),
           )
@@ -109,7 +110,7 @@ class _GenreMoviesState extends State<GenreMovies> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       Icon(EvaIcons.filmOutline,
-                                          color: Colors.white, size: 50.0)
+                                          color: Style.Colors.white, size: 50.0)
                                     ],
                                   ))
                               : Container(
@@ -121,7 +122,7 @@ class _GenreMoviesState extends State<GenreMovies> {
                                       shape: BoxShape.rectangle,
                                       image: DecorationImage(
                                           image: NetworkImage(
-                                              "https://image.tmdb.org/t/p/w200/" +
+                                              Constants.imageUrl +
                                                   movies[index].poster),
                                           fit: BoxFit.cover)),
                                 ),
@@ -134,18 +135,18 @@ class _GenreMoviesState extends State<GenreMovies> {
                                 maxLines: 2,
                                 style: TextStyle(
                                     height: 1.4,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 11.0)),
+                                    color: Style.Colors.white,
+                                    fontWeight: Style.FontWeights.bold,
+                                    fontSize: Style.FontSizes.size11)),
                           ),
                           SizedBox(height: 5.0),
                           Row(
                             children: <Widget>[
                               Text(movies[index].rating.toString(),
                                   style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10.0,
-                                      fontWeight: FontWeight.bold)),
+                                      color: Style.Colors.white,
+                                      fontSize: Style.FontSizes.size10,
+                                      fontWeight: Style.FontWeights.bold)),
                               SizedBox(width: 5.0),
                               RatingBar.builder(
                                 itemSize: 8.0,

@@ -1,5 +1,5 @@
-import 'package:movietracker/model/account_response.dart';
-import 'package:movietracker/repository/user.dart';
+import 'package:freeshowtv/model/account_response.dart';
+import 'package:freeshowtv/repository/user.dart';
 import 'package:rxdart/subjects.dart';
 
 class AccountBloc {

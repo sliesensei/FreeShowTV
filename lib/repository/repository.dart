@@ -1,17 +1,16 @@
-import 'package:movietracker/model/cast_response.dart';
-import 'package:movietracker/model/genre_response.dart';
-import 'package:movietracker/model/movie_detail_response.dart';
-import 'package:movietracker/model/movie_response.dart';
-import 'package:movietracker/model/movie.dart';
+import 'package:freeshowtv/model/cast_response.dart';
+import 'package:freeshowtv/model/genre_response.dart';
+import 'package:freeshowtv/model/movie_detail_response.dart';
+import 'package:freeshowtv/model/movie_response.dart';
+import 'package:freeshowtv/model/movie.dart';
 import 'package:dio/dio.dart';
-import 'package:movietracker/model/person_response.dart';
-import 'package:movietracker/model/video_response.dart';
+import 'package:freeshowtv/model/person_response.dart';
+import 'package:freeshowtv/model/video_response.dart';
+import 'package:freeshowtv/constant/constants.dart';
 
 class MovieRepository {
-  final String apiKey = "7d039bce864f6ec288abc6f2e0124f22";
-  static String mainUrl = "https://api.themoviedb.org/3";
   final Dio _dio = Dio();
-
+  static const String mainUrl = Constants.mainUrl;
   var getPopularUrl = '$mainUrl/movie/top_rated';
   var getMoviesUrl = '$mainUrl/discover/movie';
   var getPlayingUrl = '$mainUrl/movie/now_playing';
@@ -21,7 +20,7 @@ class MovieRepository {
   var searchUrl = '$mainUrl/search/movie';
 
   Future<MovieResponse> getMovies() async {
-    var params = {"api_key": apiKey, "language": "en-US", "page": 1};
+    var params = {"api_key": Constants.apiKey, "language": "en-US", "page": 1};
     try {
       Response response =
           await _dio.get(getPopularUrl, queryParameters: params);
@@ -33,7 +32,7 @@ class MovieRepository {
   }
 
   Future<MovieResponse> getPlayingMovies() async {
-    var params = {"api_key": apiKey, "language": "en-US", "page": 1};
+    var params = {"api_key": Constants.apiKey, "language": "en-US", "page": 1};
     try {
       Response response =
           await _dio.get(getPlayingUrl, queryParameters: params);
@@ -45,7 +44,7 @@ class MovieRepository {
   }
 
   Future<GenreResponse> getGenres() async {
-    var params = {"api_key": apiKey, "language": "en-US", "page": 1};
+    var params = {"api_key": Constants.apiKey, "language": "en-US", "page": 1};
     try {
       Response response =
           await _dio.get(getGeneresUrl, queryParameters: params);
@@ -58,7 +57,7 @@ class MovieRepository {
 
   Future<PersonResponse> getPersons() async {
     var params = {
-      "api_key": apiKey,
+      "api_key": Constants.apiKey,
     };
     try {
       Response response = await _dio.get(getPersonUrl, queryParameters: params);
@@ -72,7 +71,7 @@ class MovieRepository {
 
   Future<MovieResponse> getMovieByGenre(int id) async {
     var params = {
-      "api_key": apiKey,
+      "api_key": Constants.apiKey,
       "language": "en-US",
       "page": 1,
       "with_genres": id
@@ -87,7 +86,7 @@ class MovieRepository {
   }
 
   Future<MovieResponse> getPopular() async {
-    var params = {"api_key": apiKey, "language": "en-US", "page": 1};
+    var params = {"api_key": Constants.apiKey, "language": "en-US", "page": 1};
     try {
       Response response =
           await _dio.get(getPopularUrl, queryParameters: params);
@@ -99,7 +98,7 @@ class MovieRepository {
   }
 
   Future<MovieDetailResponse> getMovieDetail(int id) async {
-    var params = {"api_key": apiKey, "language": "en-US"};
+    var params = {"api_key": Constants.apiKey, "language": "en-US"};
 
     try {
       Response response =
@@ -112,7 +111,7 @@ class MovieRepository {
   }
 
   Future<CastResponse> getCasts(int id) async {
-    var params = {"api_key": apiKey, "language": "en-US"};
+    var params = {"api_key": Constants.apiKey, "language": "en-US"};
     try {
       Response response = await _dio.get(movieUrl + "/$id" + "/credits",
           queryParameters: params);
@@ -124,7 +123,7 @@ class MovieRepository {
   }
 
   Future<MovieResponse> getSimilarMovies(int id) async {
-    var params = {"api_key": apiKey, "language": "en-US"};
+    var params = {"api_key": Constants.apiKey, "language": "en-US"};
     try {
       Response response = await _dio.get(movieUrl + "/$id" + "/similar",
           queryParameters: params);
@@ -136,7 +135,7 @@ class MovieRepository {
   }
 
   Future<VideoResponse> getMovieVideos(int id) async {
-    var params = {"api_key": apiKey, "language": "en-US"};
+    var params = {"api_key": Constants.apiKey, "language": "en-US"};
     try {
       Response response = await _dio.get(movieUrl + "/$id" + "/videos",
           queryParameters: params);
@@ -148,7 +147,11 @@ class MovieRepository {
   }
 
   Future<List<Movie>> searchMovie(String query) async {
-    var params = {"api_key": apiKey, "language": "en-US", "query": query};
+    var params = {
+      "api_key": Constants.apiKey,
+      "language": "en-US",
+      "query": query
+    };
     try {
       Response response = await _dio.get(searchUrl, queryParameters: params);
       if (response.statusCode == 200) {
@@ -163,5 +166,4 @@ class MovieRepository {
       return [];
     }
   }
-
 }

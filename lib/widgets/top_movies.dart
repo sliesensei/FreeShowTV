@@ -2,10 +2,11 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:movietracker/bloc/get_movie_bloc.dart';
-import 'package:movietracker/model/movie.dart';
-import 'package:movietracker/model/movie_response.dart';
-import 'package:movietracker/style/theme.dart' as Style;
+import 'package:freeshowtv/bloc/get_movie_bloc.dart';
+import 'package:freeshowtv/model/movie.dart';
+import 'package:freeshowtv/model/movie_response.dart';
+import 'package:freeshowtv/style/theme.dart' as Style;
+import 'package:freeshowtv/constant/constants.dart';
 
 class TopMovies extends StatefulWidget {
   @override
@@ -29,8 +30,8 @@ class _TopMoviesState extends State<TopMovies> {
             child: Text("TOP RATED MOVIES",
                 style: TextStyle(
                     color: Style.Colors.titleColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12.0))),
+                    fontWeight: Style.FontWeights.w500,
+                    fontSize: Style.FontSizes.size12))),
         SizedBox(height: 5.0),
         StreamBuilder<MovieResponse>(
           stream: moviesBloc.subject.stream,
@@ -68,7 +69,7 @@ class _TopMoviesState extends State<TopMovies> {
             height: 25.0,
             width: 25,
             child: CircularProgressIndicator(
-              valueColor: new AlwaysStoppedAnimation(Colors.white),
+              valueColor: new AlwaysStoppedAnimation(Style.Colors.white),
               strokeWidth: 4.0,
             ),
           )
@@ -106,7 +107,7 @@ class _TopMoviesState extends State<TopMovies> {
                               child: Column(
                                 children: <Widget>[
                                   Icon(EvaIcons.filmOutline,
-                                      color: Colors.white, size: 50.0)
+                                      color: Style.Colors.white, size: 50.0)
                                 ],
                               ))
                           : Container(
@@ -118,7 +119,7 @@ class _TopMoviesState extends State<TopMovies> {
                                   shape: BoxShape.rectangle,
                                   image: DecorationImage(
                                       image: NetworkImage(
-                                          "https://image.tmdb.org/t/p/w200/" +
+                                          Constants.imageUrl +
                                               movies[index].poster),
                                       fit: BoxFit.cover)),
                             ),
@@ -131,18 +132,18 @@ class _TopMoviesState extends State<TopMovies> {
                             maxLines: 2,
                             style: TextStyle(
                                 height: 1.4,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 11.0)),
+                                color: Style.Colors.white,
+                                fontWeight: Style.FontWeights.bold,
+                                fontSize: Style.FontSizes.size11)),
                       ),
                       SizedBox(height: 5.0),
                       Row(
                         children: <Widget>[
                           Text(movies[index].rating.toString(),
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10.0,
-                                  fontWeight: FontWeight.bold)),
+                                  color: Style.Colors.white,
+                                  fontSize: Style.FontSizes.size10,
+                                  fontWeight: Style.FontWeights.bold)),
                           SizedBox(width: 5.0),
                           RatingBar.builder(
                             itemSize: 8.0,

@@ -1,4 +1,4 @@
-import 'package:movietracker/model/search.dart';
+import 'package:freeshowtv/model/search.dart';
 
 class SearchResponse {
   final List<Search> videos;

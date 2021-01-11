@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:movietracker/screens/profile_screen.dart';
-import 'package:movietracker/screens/search_screen.dart';
-import 'package:movietracker/style/theme.dart' as Style;
-import 'package:movietracker/screens/login_screen.dart';
+import 'package:freeshowtv/screens/profile_screen.dart';
+import 'package:freeshowtv/screens/search_screen.dart';
+import 'package:freeshowtv/style/theme.dart' as Style;
+import 'package:freeshowtv/screens/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:freeshowtv/repository/user.dart';
+import 'package:freeshowtv/screens/home_screen.dart';
 
 class MainDrawer extends StatefulWidget {
   @override
@@ -12,6 +14,7 @@ class MainDrawer extends StatefulWidget {
 
 class _MainDrawerState extends State<MainDrawer> {
   bool _isConnect;
+  final UserRepository _repository = UserRepository();
 
   Future<Null> getloginStatus() async {
     final db = await SharedPreferences.getInstance();
@@ -81,27 +84,63 @@ class _MainDrawerState extends State<MainDrawer> {
                 ),
                 alignment: Alignment.centerLeft,
               ),
-              onTap: _isConnect ? () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ProfileScreen()));
-              } : () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()));
-              },
+              onTap: _isConnect
+                  ? () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfileScreen()));
+                    }
+                  : () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()));
+                    },
             ),
             ListTile(
-              title: Container(
-                child: Text(
-                  _isConnect ? "Log out" : "Log In",
-                  style: TextStyle(color: Style.Colors.white),
+                title: Container(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const SizedBox(height: 30),
+                      RaisedButton(
+                        color:
+                            _isConnect ? Style.Colors.red : Style.Colors.green,
+                        onPressed: _isConnect
+                            ? () {
+                                _repository.logout();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HomeScreen()));
+                              }
+                            : () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginScreen()));
+                              },
+                        child: Text(_isConnect ? "Log out" : "Log In",
+                            style: TextStyle(fontSize: Style.FontSizes.size20)),
+                      ),
+                    ],
+                  ),
                 ),
-                alignment: Alignment.centerLeft,
-              ),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()));
-              },
-            ),
+                onTap: _isConnect
+                    ? () {
+                        _repository.logout();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomeScreen()));
+                      }
+                    : () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginScreen()));
+                      }),
           ],
         )));
   }

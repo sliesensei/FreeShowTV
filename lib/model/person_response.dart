@@ -1,4 +1,4 @@
-import 'package:movietracker/model/person.dart';
+import 'package:freeshowtv/model/person.dart';
 
 class PersonResponse {
   final List<Person> persons;

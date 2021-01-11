@@ -1,4 +1,4 @@
-import 'package:movietracker/model/genre.dart';
+import 'package:freeshowtv/model/genre.dart';
 
 class GenreResponse {
   final List<Genre> genres;

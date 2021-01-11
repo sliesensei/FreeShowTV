@@ -1,4 +1,4 @@
-import 'package:movietracker/model/movie.dart';
+import 'package:freeshowtv/model/movie.dart';
 
 class MovieResponse {
   final List<Movie> movies;

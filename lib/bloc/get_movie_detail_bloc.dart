@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:movietracker/model/movie_detail_response.dart';
-import 'package:movietracker/repository/repository.dart';
+import 'package:freeshowtv/model/movie_detail_response.dart';
+import 'package:freeshowtv/repository/repository.dart';
 import 'package:rxdart/rxdart.dart';
 
 class MovieDetailBloc {

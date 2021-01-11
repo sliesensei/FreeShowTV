@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movietracker/screens/home_screen.dart';
-
+import 'package:freeshowtv/screens/home_screen.dart';
 void main() {
   runApp(MyApp());
 }

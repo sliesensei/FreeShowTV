@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:movietracker/bloc/get_persons_bloc.dart';
-import 'package:movietracker/model/person.dart';
-import 'package:movietracker/model/person_response.dart';
-import 'package:movietracker/style/theme.dart' as Style;
+import 'package:freeshowtv/bloc/get_persons_bloc.dart';
+import 'package:freeshowtv/model/person.dart';
+import 'package:freeshowtv/model/person_response.dart';
+import 'package:freeshowtv/style/theme.dart' as Style;
+import 'package:freeshowtv/constant/constants.dart';
 
 class PersonsList extends StatefulWidget {
   @override
@@ -27,8 +28,8 @@ class _PersonsListState extends State<PersonsList> {
             child: Text("TRENDING PERSONS ON THIS WEEK",
                 style: TextStyle(
                     color: Style.Colors.titleColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12.0))),
+                    fontWeight: Style.FontWeights.w500,
+                    fontSize: Style.FontSizes.size12))),
         SizedBox(height: 5.0),
         StreamBuilder<PersonResponse>(
           stream: personsBloc.subject.stream,
@@ -59,7 +60,7 @@ class _PersonsListState extends State<PersonsList> {
             height: 25.0,
             width: 25,
             child: CircularProgressIndicator(
-              valueColor: new AlwaysStoppedAnimation(Colors.white),
+              valueColor: new AlwaysStoppedAnimation(Style.Colors.white),
               strokeWidth: 4.0,
             ),
           )
@@ -98,7 +99,7 @@ class _PersonsListState extends State<PersonsList> {
                               shape: BoxShape.circle,
                               color: Style.Colors.secondColor),
                           child: Icon(FontAwesomeIcons.userAlt,
-                              color: Colors.white))
+                              color: Style.Colors.white))
                       : Container(
                           width: 70.0,
                           height: 70.0,
@@ -106,7 +107,7 @@ class _PersonsListState extends State<PersonsList> {
                               shape: BoxShape.circle,
                               image: DecorationImage(
                                   image: NetworkImage(
-                                      "https://image.tmdb.org/t/p/w200/" +
+                                      Constants.imageUrl +
                                           persons[index].profileImg),
                                   fit: BoxFit.cover)),
                         ),
@@ -118,9 +119,9 @@ class _PersonsListState extends State<PersonsList> {
                     maxLines: 2,
                     style: TextStyle(
                         height: 1.4,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 9.0),
+                        color: Style.Colors.white,
+                        fontWeight: Style.FontWeights.bold,
+                        fontSize: Style.FontSizes.size9),
                   ),
                   SizedBox(
                     height: 3.0,
@@ -128,8 +129,8 @@ class _PersonsListState extends State<PersonsList> {
                   Text("Trending for ${persons[index].known}",
                       style: TextStyle(
                           color: Style.Colors.titleColor,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 7.0))
+                          fontWeight: Style.FontWeights.w400,
+                          fontSize: Style.FontSizes.size7))
                 ],
               ),
             );

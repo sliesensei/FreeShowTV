@@ -1,17 +1,18 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:movietracker/bloc/get_movie_videos.bloc.dart';
-import 'package:movietracker/model/movie.dart';
-import 'package:movietracker/model/video.dart';
-import 'package:movietracker/model/video_response.dart';
-import 'package:movietracker/screens/video_player.dart';
-import 'package:movietracker/style/theme.dart' as Style;
-import 'package:movietracker/widgets/casts.dart';
-import 'package:movietracker/widgets/movie_info.dart';
-import 'package:movietracker/widgets/similar_movies.dart';
+import 'package:freeshowtv/bloc/get_movie_videos.bloc.dart';
+import 'package:freeshowtv/model/movie.dart';
+import 'package:freeshowtv/model/video.dart';
+import 'package:freeshowtv/model/video_response.dart';
+import 'package:freeshowtv/screens/video_player.dart';
+import 'package:freeshowtv/style/theme.dart' as Style;
+import 'package:freeshowtv/widgets/casts.dart';
+import 'package:freeshowtv/widgets/movie_info.dart';
+import 'package:freeshowtv/widgets/similar_movies.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:freeshowtv/constant/constants.dart';
 
 class MovieDetailScreen extends StatefulWidget {
   final Movie movie;
@@ -72,8 +73,8 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                       ? movie.title.substring(0, 37) + "..."
                       : movie.title,
                   style: TextStyle(
-                    fontSize: 12.0, 
-                    fontWeight: FontWeight.bold),
+                      fontSize: Style.FontSizes.size12,
+                      fontWeight: Style.FontWeights.bold),
                 ),
                 background: Stack(
                   children: <Widget>[
@@ -82,7 +83,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                         shape: BoxShape.rectangle,
                         image: DecorationImage(
                             image: NetworkImage(
-                                "https://image.tmdb.org/t/p/original" +
+                                Constants.imageUrlOriginal +
                                     movie.backPoster)),
                       ),
                       child: Container(
@@ -117,8 +118,8 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                               movie.rating.toString(),
                               style: TextStyle(
                                   color: Style.Colors.white,
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.bold),
+                                  fontSize: Style.FontSizes.size14,
+                                  fontWeight: Style.FontWeights.bold),
                             ),
                             SizedBox(
                               width: 5.0,
@@ -145,8 +146,8 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                       child: Text("OVERVIEW",
                           style: TextStyle(
                               color: Style.Colors.titleColor,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12.0)),
+                              fontWeight: Style.FontWeights.w500,
+                              fontSize: Style.FontSizes.size12)),
                     ),
                     SizedBox(
                       height: 5.0,
@@ -156,7 +157,9 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                       child: Text(
                         movie.overview,
                         style: TextStyle(
-                            color: Colors.white, fontSize: 12.0, height: 1.5),
+                            color: Style.Colors.white,
+                            fontSize: Style.FontSizes.size12,
+                            height: 1.5),
                       ),
                     ),
                     SizedBox(

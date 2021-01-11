@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:movietracker/bloc/get_movie_detail_bloc.dart';
-import 'package:movietracker/model/movie_detail.dart';
-import 'package:movietracker/model/movie_detail_response.dart';
-import 'package:movietracker/style/theme.dart' as Style;
+import 'package:freeshowtv/bloc/get_movie_detail_bloc.dart';
+import 'package:freeshowtv/model/movie_detail.dart';
+import 'package:freeshowtv/model/movie_detail_response.dart';
+import 'package:freeshowtv/style/theme.dart' as Style;
 
 class MovieInfo extends StatefulWidget {
   final int id;
@@ -64,7 +64,7 @@ class _MovieInfoState extends State<MovieInfo> {
             height: 25.0,
             width: 25,
             child: CircularProgressIndicator(
-              valueColor: new AlwaysStoppedAnimation(Colors.white),
+              valueColor: new AlwaysStoppedAnimation(Style.Colors.white),
               strokeWidth: 4.0,
             ),
           )
@@ -89,16 +89,16 @@ class _MovieInfoState extends State<MovieInfo> {
                   Text("BUDGET",
                       style: TextStyle(
                           color: Style.Colors.titleColor,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12.0)),
+                          fontWeight: Style.FontWeights.w500,
+                          fontSize: Style.FontSizes.size12)),
                   SizedBox(
                     height: 10.0,
                   ),
                   Text(detail.budget.toString() + "\$",
                       style: TextStyle(
                           color: Style.Colors.secondColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12.0))
+                          fontWeight: Style.FontWeights.bold,
+                          fontSize: Style.FontSizes.size12))
                 ],
               ),
               Column(
@@ -107,16 +107,16 @@ class _MovieInfoState extends State<MovieInfo> {
                   Text("DURATION",
                       style: TextStyle(
                           color: Style.Colors.titleColor,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12.0)),
+                          fontWeight: Style.FontWeights.w500,
+                          fontSize: Style.FontSizes.size12)),
                   SizedBox(
                     height: 10.0,
                   ),
                   Text(detail.runtime.toString() + "min",
                       style: TextStyle(
                           color: Style.Colors.secondColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12.0))
+                          fontWeight: Style.FontWeights.bold,
+                          fontSize: Style.FontSizes.size12))
                 ],
               ),
               Column(
@@ -125,16 +125,16 @@ class _MovieInfoState extends State<MovieInfo> {
                   Text("RELEASE DATE",
                       style: TextStyle(
                           color: Style.Colors.titleColor,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12.0)),
+                          fontWeight: Style.FontWeights.w500,
+                          fontSize: Style.FontSizes.size12)),
                   SizedBox(
                     height: 10.0,
                   ),
                   Text(detail.releaseDate,
                       style: TextStyle(
                           color: Style.Colors.secondColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12.0))
+                          fontWeight: Style.FontWeights.bold,
+                          fontSize: Style.FontSizes.size12))
                 ],
               )
             ],
@@ -151,8 +151,8 @@ class _MovieInfoState extends State<MovieInfo> {
               Text("GENRES",
                   style: TextStyle(
                       color: Style.Colors.titleColor,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12.0)),
+                      fontWeight: Style.FontWeights.w500,
+                      fontSize: Style.FontSizes.size12)),
               SizedBox(
                 height: 10.0,
               ),
@@ -172,12 +172,12 @@ class _MovieInfoState extends State<MovieInfo> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5.0)),
                               border:
-                                  Border.all(width: 1.0, color: Colors.white)),
+                                  Border.all(width: 1.0, color: Style.Colors.white)),
                           child: Text(detail.genres[index].name,
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 9.0))),
+                                  color: Style.Colors.white,
+                                  fontWeight: Style.FontWeights.w300,
+                                  fontSize: Style.FontSizes.size9))),
                     );
                   },
                 ),

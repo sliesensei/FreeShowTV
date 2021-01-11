@@ -1,16 +1,44 @@
-# movietracker
+# FreeShowTV
 
-A new Flutter project.
+A amaziiiing video search App directly connected to themoviedb !
 
-## Getting Started
+# Getting Started
 
-This project is a starting point for a Flutter application.
+## Welcome !
+<img src="./docimg/Screenshot_1610323817.png" alt="Home"
+	title="Home" width="280" />
 
-A few resources to get you started if this is your first Flutter project:
+## Menu to access on Account screen or Search screen
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+<img src="./docimg/Screenshot_1610323854.png" alt="Home"
+	title="Home" width="280" />
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Login Menu
+
+<img src="./docimg/Screenshot_1610323860.png" alt="Home"
+	title="Home" width="280" />
+
+<img src="./docimg/Screenshot_1610324028.png" alt="Home"
+	title="Home" width="280" />
+
+## Search screen
+
+<img src="./docimg/Screenshot_1610323893.png" alt="Home"
+	title="Home" width="280" />
+
+## Account screen
+
+You can pickup a new photo and upload it to the account profile
+
+<img src="./docimg/Screenshot_1610324041.png" alt="Home"
+	title="Home" width="280" />
+
+## Movie Detail screen
+
+<img src="./docimg/Screenshot_1610323905.png" alt="Home"
+	title="Home" width="280" />
+
+## Play all trailers
+
+<img src="./docimg/Screenshot_1610323943.png" alt="Home"
+	title="Home" width="280" />

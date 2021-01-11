@@ -3,11 +3,10 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:movietracker/model/account_response.dart';
-import 'package:movietracker/repository/user.dart';
-import 'package:movietracker/style/theme.dart' as Style;
+import 'package:freeshowtv/model/account_response.dart';
+import 'package:freeshowtv/repository/user.dart';
+import 'package:freeshowtv/style/theme.dart' as Style;
 import 'package:path/path.dart' as path;
-import 'package:movietracker/screens/login_screen.dart';
 import 'package:path_provider/path_provider.dart' as syspaths;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -30,6 +29,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
       _username = data.username;
       _includeAdult = data.includeAdult;
     });
+  }
+
+  Future<void> _takePicture() async {
+    final imageFile = await ImagePicker.pickImage(
+      source: ImageSource.camera,
+      maxWidth: 600,
+    );
+    if (imageFile == null) {
+      return;
+    }
+    setState(() {
+      _storedImage = imageFile;
+    });
+    final appDir = await syspaths.getApplicationDocumentsDirectory();
+    final fileName = path.basename(imageFile.path);
+    final prefs = await SharedPreferences.getInstance();
+    await imageFile.copy('${appDir.path}/$fileName');
+    prefs.setString('profilePicturePath', '${appDir.path}/$fileName');
   }
 
   @override
@@ -83,14 +100,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   height: 100,
                 ),
               ),
-              FlatButton(
-                onPressed: _takePicture,
-                child: Text(
-                  "Change Profile Picture",
-                  style:
-                      TextStyle(fontSize: 12, color: Style.Colors.titleColor),
-                ),
-              ),
+              RaisedButton(
+                  child: Text('Change Profile Picture'),
+                  color: Style.Colors.green,
+                  onPressed: _takePicture),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -114,21 +127,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       style: TextStyle(color: Style.Colors.titleColor),
                     ),
                     Text(
-                      "$_includeAdult",
+                      _includeAdult == true ? "Yes" : "No",
                       style: TextStyle(color: Style.Colors.white),
                     )
                   ],
-                ),
-              ),
-              FlatButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()));
-                },
-                child: Text(
-                  "Disconnect",
-                  style:
-                  TextStyle(fontSize: 13, color: Style.Colors.red),
                 ),
               ),
             ],
@@ -136,23 +138,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
-  }
-
-  Future<void> _takePicture() async {
-    final imageFile = await ImagePicker.pickImage(
-      source: ImageSource.camera,
-      maxWidth: 600,
-    );
-    if (imageFile == null) {
-      return;
-    }
-    setState(() {
-      _storedImage = imageFile;
-    });
-    final appDir = await syspaths.getApplicationDocumentsDirectory();
-    final fileName = path.basename(imageFile.path);
-    final prefs = await SharedPreferences.getInstance();
-    await imageFile.copy('${appDir.path}/$fileName');
-    prefs.setString('profilePicturePath', '${appDir.path}/$fileName');
   }
 }

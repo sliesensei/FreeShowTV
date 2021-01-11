@@ -1,4 +1,4 @@
-import 'package:movietracker/model/movie_detail.dart';
+import 'package:freeshowtv/model/movie_detail.dart';
 
 class MovieDetailResponse {
   final MovieDetail movieDetail;

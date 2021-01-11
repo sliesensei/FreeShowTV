@@ -1,5 +1,5 @@
-import 'package:movietracker/model/genre_response.dart';
-import 'package:movietracker/repository/repository.dart';
+import 'package:freeshowtv/model/genre_response.dart';
+import 'package:freeshowtv/repository/repository.dart';
 import 'package:rxdart/subjects.dart';
 
 class GenresListBloc {

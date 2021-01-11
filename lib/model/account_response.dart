@@ -1,5 +1,3 @@
-import 'package:movietracker/model/account.dart';
-
 class AccountResponse {
   final String id;
   final String username;

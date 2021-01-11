@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movietracker/bloc/get_movies_byGenre_bloc.dart';
-import 'package:movietracker/model/genre.dart';
-import 'package:movietracker/style/theme.dart' as Style;
-import 'package:movietracker/widgets/genres_movies.dart';
+import 'package:freeshowtv/bloc/get_movies_byGenre_bloc.dart';
+import 'package:freeshowtv/model/genre.dart';
+import 'package:freeshowtv/style/theme.dart' as Style;
+import 'package:freeshowtv/widgets/genres_movies.dart';
 
 class GenresList extends StatefulWidget {
   final List<Genre> genres;
@@ -52,15 +52,15 @@ class _GenresListState extends State<GenresList>
                       indicatorSize: TabBarIndicatorSize.tab,
                       indicatorWeight: 3.0,
                       unselectedLabelColor: Style.Colors.titleColor,
-                      labelColor: Colors.white,
+                      labelColor: Style.Colors.white,
                       isScrollable: true,
                       tabs: genres.map((Genre genre) {
                         return Container(
                             padding: EdgeInsets.only(bottom: 15.0, top: 10.0),
                             child: Text(genre.name.toUpperCase(),
                                 style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold)));
+                                    fontSize: Style.FontSizes.size14,
+                                    fontWeight: Style.FontWeights.bold)));
                       }).toList()),
                 ),
                 preferredSize: Size.fromHeight(50.0)),

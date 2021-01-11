@@ -1,4 +1,4 @@
-import 'package:movietracker/model/cast.dart';
+import 'package:freeshowtv/model/cast.dart';
 
 class CastResponse {
   final List<Cast> casts;

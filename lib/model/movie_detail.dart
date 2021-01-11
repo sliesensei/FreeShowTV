@@ -1,4 +1,4 @@
-import 'package:movietracker/model/genre.dart';
+import 'package:freeshowtv/model/genre.dart';
 
 class MovieDetail {
   final int id;
